@@ -1,0 +1,11 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  number: 1
+  capacity: 1
+  price: 1.5
+
+two:
+  number: 1
+  capacity: 1
+  price: 1.5
