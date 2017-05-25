@@ -37,6 +37,9 @@ gem 'rspec'
 gem 'guard'
 gem 'guard-rspec'
 
+# To improve Front-end
+gem 'semantic-ui-sass'
+
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development
 
