@@ -1,0 +1,2 @@
+class EventHall < Accommodation
+end
