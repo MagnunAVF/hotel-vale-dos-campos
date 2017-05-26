@@ -1,7 +1,5 @@
-# This file should contain all the record creation needed to seed the database with its default values.
-# The data can then be loaded with the rails db:seed command (or created alongside the database with db:setup).
-#
-# Examples:
-#
-#   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
-#   Character.create(name: 'Luke', movie: movies.first)
+if Hotelinformation.all.empty?
+  Hotelinformation.create(description: "Hotel localizado na Serra do RS.", email:"hotelvaledoscampos@gmail.com", fone: "51999998877", address: "Rua X num 123")
+else
+  print "HotelInformation exists !"
+end

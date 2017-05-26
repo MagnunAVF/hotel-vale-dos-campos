@@ -1,6 +1,9 @@
 Rails.application.routes.draw do
+  root "hotelinformations#home"
+  resources :hotelinformations, only: [:show, :edit, :update]
   resources :bookings
   resources :accommodations
   resources :users
-  # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
+
+  get "/home" => "hotelinformations#home"
 end
