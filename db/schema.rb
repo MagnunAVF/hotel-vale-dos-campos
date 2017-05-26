@@ -22,13 +22,13 @@ ActiveRecord::Schema.define(version: 20170526020150) do
 
   create_table "users", force: :cascade do |t|
     t.string   "name"
-    t.integer  "cpf"
+    t.integer  "cpf",        limit: 15
     t.string   "address"
     t.date     "birthday"
     t.string   "email"
-    t.integer  "fone"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.integer  "fone",       limit: 15
+    t.datetime "created_at",            null: false
+    t.datetime "updated_at",            null: false
     t.string   "type"
   end
 
