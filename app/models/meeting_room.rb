@@ -1,0 +1,2 @@
+class MeetingRoom < Accommodation
+end
