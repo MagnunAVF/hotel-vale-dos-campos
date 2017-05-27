@@ -32,6 +32,9 @@ gem 'jbuilder', '~> 2.5'
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'
 
+# Devise for user authentication
+gem 'devise'
+
 # Rspec and Guard for automated tests
 gem 'rspec'
 gem 'guard'
