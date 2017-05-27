@@ -9,6 +9,18 @@
   </head>
 
   <body>
+    <div class="nav_menu">
+      <% if user_signed_in? %>
+        <% if current_user.type == "employee" %>
+          <%= render 'layouts/employee_navbar' %>
+        <% else %>
+          <%= render 'layouts/client_navbar' %>
+        <% end %>
+      <% else %>
+        <%= render 'layouts/visitors_navbar' %>
+      <% end %>
+    </div>
+
     <p class="notice"><%= notice %></p>
     <p class="alert"><%= alert %></p>
 
