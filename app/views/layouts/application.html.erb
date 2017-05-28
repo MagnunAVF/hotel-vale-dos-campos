@@ -9,6 +9,13 @@
   </head>
 
   <body>
+    <div class="ui grid">
+      <div class="left floated column">
+        <%= image_tag('logo.png') %>
+      </div>
+      <%= render 'layouts/social_medias' %>
+    </div>
+
     <div class="nav_menu">
       <% if user_signed_in? %>
         <% if current_user.type == "employee" %>
