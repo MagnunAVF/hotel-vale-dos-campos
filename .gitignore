@@ -19,3 +19,6 @@
 
 # Ignore Byebug command history file.
 .byebug_history
+
+# Ignore precompiled files (created in make setup)
+/public/assets
