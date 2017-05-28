@@ -1,3 +1,3 @@
 class MeetingRoom < Accommodation
-  validates_presence_of :videoconf
+  validates :occupied, inclusion: { in: [ true, false ] }
 end
