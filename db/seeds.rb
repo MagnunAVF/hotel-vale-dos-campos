@@ -1,7 +1,7 @@
-print "*** Creating initial DB ***"
-print "Seeding DB ..."
+print "*** Creating initial DB ***\n"
+print "Seeding DB ...\n"
 
-print "Creating Hotel Information"
+print "Creating Hotel Information\n"
 Hotelinformation.create(
   description: "Hotel localizado na Serra do RS.",
   email:"hotelvaledoscampos@gmail.com",
@@ -9,11 +9,11 @@ Hotelinformation.create(
   address: "Rua X num 123"
 )
 
-print "Creating Accommodations ..."
+print "Creating Accommodations ...\n"
 number_fixture = 1
 boolean_fixture = false
 
-print "Creating Rooms "
+print "Creating Rooms \n"
 
 for i in 1..50
   Room.create(
@@ -43,7 +43,7 @@ for i in 1..30
   boolean_fixture = !boolean_fixture
 end
 
-print "Creating Meeting Rooms"
+print "Creating Meeting Rooms\n"
 for i in 1..10
   MeetingRoom.create(
     number: number_fixture,
@@ -70,7 +70,7 @@ for i in 1..2
   boolean_fixture = !boolean_fixture
 end
 
-print "Creating Event Hall"
+print "Creating Event Hall\n"
 for i in 1..2
   EventHall.create(
     number: number_fixture,
@@ -83,3 +83,5 @@ for i in 1..2
   number_fixture += 1
   boolean_fixture = !boolean_fixture
 end
+
+print "Done! DB populated ! \n"
