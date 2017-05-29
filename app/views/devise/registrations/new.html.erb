@@ -1,29 +1,67 @@
-<h2>Sign up</h2>
+<h2 class="ui horizontal divider header">
+  Cadastrar-se
+</h2>
+<br/><br/>
+<div class="ui container">
+  <div class="ui center aligned grid">
+    <div class="ui form">
+      <%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
+        <%= devise_error_messages! %>
+        <div class="ui inline fields">
+          <div class="field">
+            <%= f.label :name %>
+            <%= f.text_field :name %>
+          </div>
 
-<%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
-  <%= devise_error_messages! %>
+          <div class="field">
+            <%= f.label :cpf %>
+            <%= f.number_field :cpf %>
+          </div>
 
-  <div class="field">
-    <%= f.label :email %><br />
-    <%= f.email_field :email, autofocus: true %>
+          <div class="field">
+            <%= f.label :fone %>
+            <%= f.number_field :fone %>
+          </div>
+        </div>
+        </br>
+        <div class="ui inline fields">
+          <div class="field">
+            <%= f.label :birthday %>
+            <%= f.date_select :birthday %>
+          </div>
+
+        </div>
+
+        <div class="field">
+          <%= f.label :address %>
+          <%= f.text_field :address %>
+        </div>
+        
+        <div class="field">
+          <%= f.label :email %><br />
+          <%= f.email_field :email, autofocus: true %>
+        </div>
+
+        <div class="field">
+          <%= f.label :password, "Senha" %>
+          <% if @minimum_password_length %>
+          <em>(<%= @minimum_password_length %> caracteres no mínimo)</em>
+          <% end %><br/>
+          <%= f.password_field :password, autocomplete: "off" %>
+        </div>
+
+        <div class="field">
+          <%= f.label :password_confirmation, "Confirmar senha" %><br />
+          <%= f.password_field :password_confirmation, autocomplete: "off" %>
+        </div>
+
+        <div class="actions">
+          <%= f.submit "Casdastrar" , class: "ui blue button" %>
+        </div>
+      <% end %>
+
+      <%= render "devise/shared/links" %>
+      </br></br>
+    </div>
   </div>
-
-  <div class="field">
-    <%= f.label :password %>
-    <% if @minimum_password_length %>
-    <em>(<%= @minimum_password_length %> characters minimum)</em>
-    <% end %><br />
-    <%= f.password_field :password, autocomplete: "off" %>
-  </div>
-
-  <div class="field">
-    <%= f.label :password_confirmation %><br />
-    <%= f.password_field :password_confirmation, autocomplete: "off" %>
-  </div>
-
-  <div class="actions">
-    <%= f.submit "Sign up" %>
-  </div>
-<% end %>
-
-<%= render "devise/shared/links" %>
+</div>
