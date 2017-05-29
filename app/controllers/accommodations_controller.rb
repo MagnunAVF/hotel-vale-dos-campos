@@ -1,8 +1,6 @@
 class AccommodationsController < ApplicationController
   before_action :set_accommodation, only: [:show, :edit, :update, :destroy]
 
-  # GET /accommodations
-  # GET /accommodations.json
   def index
     @accommodations = Accommodation.all
   end
@@ -25,19 +23,18 @@ class AccommodationsController < ApplicationController
   end
 
   def search_event_halls
-    occupied_eventhall = []
+    occupied_eventhalls = []
+    searched_period = params[:period]
     start_date = params[:start_date]
     searched_start_date = Date.new(start_date["start_date(1i)"].to_i, start_date["start_date(2i)"].to_i, start_date["start_date(3i)"].to_i)
     EventHallBooking.all.each do |booking|
-      if searched_start_date == booking.start_date and params[:period]==booking.period
-        occupied_eventhall.append(EventHall.find(booking.accommodation_id))
+      if searched_start_date.strftime("%Y-%m-%d")==booking.start_date.strftime("%Y-%m-%d") && booking.period.to_i == searched_period.to_i
+        occupied_eventhalls.append(EventHall.find(booking.accommodation_id))
       end
     end
-    @event_halls = EventHall.all - occupied_eventhall
+    @event_halls = EventHall.all - occupied_eventhalls
   end
 
-  # GET /accommodations/1
-  # GET /accommodations/1.json
   def show
     if @accommodation.type=="Room"
       @room = @accommodation
@@ -50,17 +47,13 @@ class AccommodationsController < ApplicationController
     end
   end
 
-  # GET /accommodations/new
   def new
     @accommodation = Accommodation.new
   end
 
-  # GET /accommodations/1/edit
   def edit
   end
 
-  # POST /accommodations
-  # POST /accommodations.json
   def create
     @accommodation = Accommodation.new(accommodation_params)
 
@@ -75,8 +68,6 @@ class AccommodationsController < ApplicationController
     end
   end
 
-  # PATCH/PUT /accommodations/1
-  # PATCH/PUT /accommodations/1.json
   def update
     respond_to do |format|
       if @accommodation.update(accommodation_params)
@@ -89,8 +80,6 @@ class AccommodationsController < ApplicationController
     end
   end
 
-  # DELETE /accommodations/1
-  # DELETE /accommodations/1.json
   def destroy
     @accommodation.destroy
     respond_to do |format|
@@ -100,14 +89,11 @@ class AccommodationsController < ApplicationController
   end
 
   private
-    # Use callbacks to share common setup or constraints between actions.
     def set_accommodation
       @accommodation = Accommodation.find(params[:id])
     end
 
-    # Never trust parameters from the scary internet, only allow the white list through.
     def accommodation_params
-      params.require(:accommodation).permit(:number, :capacity, :price, :type, :description, :occupied, :single_beds_number, :couple_beds_number, :videoconf, :tables_number,
-      :period, :start_time => [], :end_time => [])
+      params.require(:accommodation).permit(:number, :capacity, :price, :type, :description, :occupied, :single_beds_number, :couple_beds_number, :videoconf, :tables_number, :period, :start_time => [], :end_time => [])
     end
 end

@@ -1,8 +1,28 @@
 <div class="ui center aligned container">
   <h1>O que você procura?</h1>
   <h4>Abaixo você pode checar se existem cômodos vagos no período desejado.</h4>
+  </br>
   <div class="ui center aligned segment">
-    <h4>Buscar quarto vago: </h4>
+    <h3 class="ui horizontal divider header">
+      <i class="search icon"></i>
+      Buscar quarto vago
+    </h3>
+    <%= form_for :query, url: "/search_rooms", html: { method: :get} do |form| %>
+      <%= form.label :start_date, "Data Inicial: " %>
+      <%= date_select :start_date, :start_date, order: [:day, :month, :year] %>
+      </br></br>
+      <%= form.label :end_date, "Data Final: " %>
+      <%= date_select :end_date, :end_date, order: [:day, :month, :year] %>
+      <br/></br>
+      <%= form.submit "Buscar", class: "ui blue button"  %>
+    <% end  %>
+  </div>
+  </br>
+  <div class="ui center aligned segment">
+    <h3 class="ui horizontal divider header">
+      <i class="search icon"></i>
+      Buscar Sala de reuniões vaga
+    </h3>
     <%= form_for :query, url: "/search_rooms", html: { method: :get} do |form| %>
       <%= form.label :start_date, "Data Inicial" %>
       <%= date_select :start_date, :start_date, order: [:day, :month, :year] %>
@@ -10,31 +30,28 @@
       <%= form.label :end_date, "Data Final" %>
       <%= date_select :end_date, :end_date, order: [:day, :month, :year] %>
       <br/></br>
-      <%= form.submit "Buscar"  %>
+      <%= form.submit "Buscar", class: "ui blue button"  %>
     <% end  %>
   </div>
+  </br>
   <div class="ui center aligned segment">
-    <h4>Buscar Sala de reuniões vaga: </h4>
-    <%= form_for :query, url: "/search_rooms", html: { method: :get} do |form| %>
-      <%= form.label :start_date, "Data Inicial" %>
-      <%= date_select :start_date, :start_date, order: [:day, :month, :year] %>
-      </br></br>
-      <%= form.label :end_date, "Data Final" %>
-      <%= date_select :end_date, :end_date, order: [:day, :month, :year] %>
-      <br/></br>
-      <%= form.submit "Buscar"  %>
-    <% end  %>
-  </div>
-  <div class="ui center aligned segment">
-    <h4>Buscar Salão de eventos vago: </h4>
+    <h3 class="ui horizontal divider header">
+      <i class="search icon"></i>
+      Buscar Salão de eventos vago
+    </h3>
     <%= form_for :query, url: "/search_event_halls", html: { method: :get} do |form| %>
-      <%= form.label :start_date, "Data" %>
+      <%= form.label :start_date, "Data: " %>
       <%= date_select :start_date, :start_date, order: [:day, :month, :year] %>
       </br></br>
-      <%= form.label :period, "Turno" %>
-      <%= form.number_field :period %>
+      <%= form.label :period, "Turno:" %></br>
+      <%= radio_button_tag(:period, 1) %>
+      <%= label_tag(:period, "Primeiro Turno") %></br>
+      <%= radio_button_tag(:period, 2) %>
+      <%= label_tag(:period, "Segundo Turno") %>
+
       <br/></br>
-      <%= form.submit "Buscar"  %>
+      <%= form.submit "Buscar", class: "ui blue button"  %>
     <% end  %>
   </div>
 </div>
+<br/><br/>

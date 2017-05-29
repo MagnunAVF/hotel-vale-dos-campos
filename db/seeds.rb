@@ -178,7 +178,7 @@ RoomBooking.create(
   end_date: Date.parse('2017-06-17'),
 )
 MeetingRoomBooking.create(
-  client: client01,
+  client: client02,
   employee: employee01,
   accommodation: MeetingRoom.find(130),
   description: "Preparar atas para a reunião",
@@ -186,9 +186,9 @@ MeetingRoomBooking.create(
   start_time: DateTime.parse("2012-06-15 14:00:00.000000")
 )
 EventHallBooking.create(
-  client: client01,
+  client: client02,
   employee: employee01,
-  accommodation: EventHall.find(135),
+  accommodation: EventHall.find(136),
   description: "Festa pós reunião",
   start_date: Date.parse('2017-06-15'),
   period: 2
