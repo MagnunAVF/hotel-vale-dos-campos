@@ -3,9 +3,10 @@ print "Seeding DB ...\n"
 
 print "Creating Hotel Information\n"
 Hotelinformation.create(
-  description: "Hotel localizado na Serra do RS.",
+  description: "Fundado em 1978, o hotel Vale dos Campos é uma referência na serra gaúcha. Nossa infraestrutura conta com 122 quartos, 12 ​salas de reunião, 2 ​salões de eventos, com capacidade para 100 pessoas cada, restaurante e áreas de lazer. Aqui recebemos diversos hóspedes durante todo o ano, os quais vêm tanto para diversão e turismo quanto para reuniões de negócio.",
   email:"hotelvaledoscampos@gmail.com",
-  address: "Rua X num 123"
+  address: "Rua X num 123",
+  fone: 51934772233
 )
 
 print "Creating Accommodations ...\n"

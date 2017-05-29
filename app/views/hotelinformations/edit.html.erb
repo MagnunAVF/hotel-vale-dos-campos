@@ -1,5 +1,43 @@
-<h1>Editing Hotelinformation</h1>
+<div class="ui segment">
+  <h1>Editando Informações do Hotel</h1>
 
-<%= render 'form', hotelinformation: @hotelinformation %>
+  <div class="ui form">
+    <%= form_for @hotelinformation do |f| %>
+      <% if @hotelinformation.errors.any? %>
+        <div id="error_explanation">
+          <h2><%= pluralize(@hotelinformation.errors.count, "error") %> prohibited this hotel information from being saved:</h2>
 
-<%= link_to 'Show', @hotelinformation %> 
+          <ul>
+          <% @hotelinformation.errors.full_messages.each do |message| %>
+            <li><%= message %></li>
+          <% end %>
+          </ul>
+        </div>
+      <% end %>
+
+      <div class="field">
+        <%= f.label :description, "Descrição" %>
+        <%= f.text_area :description %>
+      </div>
+
+      <div class="field">
+        <%= f.label :email, "Email" %>
+        <%= f.text_field :email %>
+      </div>
+
+      <div class="field">
+        <%= f.label :fone, "Telefone" %>
+        <%= f.number_field :fone %>
+      </div>
+
+      <div class="field">
+        <%= f.label :address, "Endereço" %>
+        <%= f.text_field :address %>
+      </div>
+
+      <div class="actions">
+        <%= f.submit "Salvar", class: "ui blue button"%>
+      </div>
+    </div>
+  <% end %>
+</div>

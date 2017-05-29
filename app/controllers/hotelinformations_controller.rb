@@ -11,14 +11,10 @@ class HotelinformationsController < ApplicationController
   end
 
   def update
-    respond_to do |format|
-      if @hotelinformation.update(hotelinformation_params)
-        format.html { redirect_to @hotelinformation, notice: 'Hotelinformation was successfully updated.' }
-        #format.json { render :show, status: :ok, location: @hotelinformation }
-      else
-        format.html { render :edit }
-        #format.json { render json: @hotelinformation.errors, status: :unprocessable_entity }
-      end
+    if @hotelinformation.update(hotelinformation_params)
+      redirect_to @hotelinformation, notice: 'Informações do Hotel atualizadas com sucesso!'
+    else
+      render :edit
     end
   end
 

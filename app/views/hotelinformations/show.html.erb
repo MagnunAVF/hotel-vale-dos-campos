@@ -1,6 +1,3 @@
-<p id="notice"><%= notice %></p>
-
-
 <div class="ui centered segment">
   <h1>Informações</h1>
 
@@ -22,6 +19,11 @@
     <strong>Endereço:</strong>
     <%= @hotelinformation.address %>
   </p>
+
+  <% if !current_user.nil? and current_user.type=="Employee" %>
+    <%= link_to 'Editar informações', edit_hotelinformation_path(@hotelinformation), :class => "ui blue button" %>
+  <% end %>
+
 </div>
 <div class="ui centered segment">
   <h2>Nossas acomodações:</h2>
