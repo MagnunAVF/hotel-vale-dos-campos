@@ -16,8 +16,6 @@ class AccommodationsController < ApplicationController
     end_date = params[:end_date]
     searched_start_date = Date.new(start_date["start_date(1i)"].to_i, start_date["start_date(2i)"].to_i, start_date["start_date(3i)"].to_i)
     searched_end_date = Date.new(end_date["end_date(1i)"].to_i, end_date["end_date(2i)"].to_i, end_date["end_date(3i)"].to_i)
-    @search_s = searched_start_date
-    @search_e = searched_end_date
     RoomBooking.all.each do |booking|
       if (booking.start_date..booking.end_date).overlaps?(searched_start_date..searched_end_date)
         occupied_rooms.append(Room.find(booking.accommodation_id))
@@ -26,11 +24,29 @@ class AccommodationsController < ApplicationController
     @rooms = Room.all - occupied_rooms
   end
 
+  def search_event_halls
+    occupied_eventhall = []
+    start_date = params[:start_date]
+    searched_start_date = Date.new(start_date["start_date(1i)"].to_i, start_date["start_date(2i)"].to_i, start_date["start_date(3i)"].to_i)
+    EventHallBooking.all.each do |booking|
+      if searched_start_date == booking.start_date and params[:period]==booking.period
+        occupied_eventhall.append(EventHall.find(booking.accommodation_id))
+      end
+    end
+    @event_halls = EventHall.all - occupied_eventhall
+  end
+
   # GET /accommodations/1
   # GET /accommodations/1.json
   def show
     if @accommodation.type=="Room"
       @room = @accommodation
+    else
+      if @accommodation.type=="EventHall"
+        @event_hall = @accommodation
+      else
+        @meeting_room = @accommodation
+      end
     end
   end
 
@@ -92,6 +108,6 @@ class AccommodationsController < ApplicationController
     # Never trust parameters from the scary internet, only allow the white list through.
     def accommodation_params
       params.require(:accommodation).permit(:number, :capacity, :price, :type, :description, :occupied, :single_beds_number, :couple_beds_number, :videoconf, :tables_number,
-      :start_time => [], :end_time => [])
+      :period, :start_time => [], :end_time => [])
     end
 end

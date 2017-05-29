@@ -1,0 +1,24 @@
+<div class="ui centered cards">
+    <div class="card">
+      <div class="image">
+        <%= image_tag('logo.png') %>
+      </div>
+      <div class="content">
+        <div class="header">
+          Número do quarto: <%= @room.number %>
+        </div>
+        <div class="meta">
+          Capacidade: <%= @room.capacity %> pessoas
+          <br/>
+          Preço: <%= @room.price %>
+        </div>
+        <div class="description">
+          <strong><%= @room.description %></strong>
+          <br/>
+          Camas de casal: <%= @room.couple_beds_number %> pessoas
+          <br/>
+          Camas de solteiro: <%= @room.single_beds_number %> pessoas
+        </div>
+      </div>
+    </div>
+</div>

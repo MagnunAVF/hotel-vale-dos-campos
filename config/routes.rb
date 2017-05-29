@@ -9,5 +9,5 @@ Rails.application.routes.draw do
   get "/home" => "hotelinformations#home"
   get "/main_search" => "accommodations#main_search"
   get "/search_rooms" => "accommodations#search_rooms"
-
+  get "/search_event_halls" => "accommodations#search_event_halls"
 end

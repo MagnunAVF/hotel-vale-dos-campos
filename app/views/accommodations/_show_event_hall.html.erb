@@ -1,0 +1,22 @@
+<div class="ui centered cards">
+    <div class="card">
+      <div class="image">
+        <%= image_tag('logo.png') %>
+      </div>
+      <div class="content">
+        <div class="header">
+          Número do Salão de Eventos: <%= @event_hall.number %>
+        </div>
+        <div class="meta">
+          Capacidade: <%= @event_hall.capacity %> pessoas
+          <br/>
+          Preço: <%= @event_hall.price %>
+        </div>
+        <div class="description">
+          <strong><%= @event_hall.description %></strong>
+          <br/>
+          Número de Mesas: <%= @event_hall.tables_number %>
+        </div>
+      </div>
+    </div>
+</div>

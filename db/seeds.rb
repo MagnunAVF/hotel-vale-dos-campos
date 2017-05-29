@@ -187,7 +187,7 @@ MeetingRoomBooking.create(
 EventHallBooking.create(
   client: client01,
   employee: employee01,
-  accommodation: MeetingRoom.find(130),
+  accommodation: EventHall.find(135),
   description: "Festa pós reunião",
   start_date: Date.parse('2017-06-15'),
   period: 2

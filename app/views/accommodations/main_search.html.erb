@@ -14,7 +14,27 @@
     <% end  %>
   </div>
   <div class="ui center aligned segment">
+    <h4>Buscar Sala de reuniões vaga: </h4>
+    <%= form_for :query, url: "/search_rooms", html: { method: :get} do |form| %>
+      <%= form.label :start_date, "Data Inicial" %>
+      <%= date_select :start_date, :start_date, order: [:day, :month, :year] %>
+      </br></br>
+      <%= form.label :end_date, "Data Final" %>
+      <%= date_select :end_date, :end_date, order: [:day, :month, :year] %>
+      <br/></br>
+      <%= form.submit "Buscar"  %>
+    <% end  %>
   </div>
   <div class="ui center aligned segment">
+    <h4>Buscar Salão de eventos vago: </h4>
+    <%= form_for :query, url: "/search_event_halls", html: { method: :get} do |form| %>
+      <%= form.label :start_date, "Data" %>
+      <%= date_select :start_date, :start_date, order: [:day, :month, :year] %>
+      </br></br>
+      <%= form.label :period, "Turno" %>
+      <%= form.number_field :period %>
+      <br/></br>
+      <%= form.submit "Buscar"  %>
+    <% end  %>
   </div>
 </div>
