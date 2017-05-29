@@ -1,23 +1,38 @@
 <p id="notice"><%= notice %></p>
 
-<p>
-  <strong>Description:</strong>
-  <%= @hotelinformation.description %>
-</p>
 
-<p>
-  <strong>Email:</strong>
-  <%= @hotelinformation.email %>
-</p>
+<div class="ui centered segment">
+  <h1>Informações</h1>
 
-<p>
-  <strong>Fone:</strong>
-  <%= @hotelinformation.fone %>
-</p>
+  <p>
+    <strong><%= @hotelinformation.description %></strong>
+  </p>
 
-<p>
-  <strong>Address:</strong>
-  <%= @hotelinformation.address %>
-</p>
+  <p>
+    <strong>Email para contato:</strong>
+    <%= @hotelinformation.email %>
+  </p>
 
-<%= link_to 'Edit', edit_hotelinformation_path(@hotelinformation) %>
+  <p>
+    <strong>Telefone para contato:</strong>
+    <%= @hotelinformation.fone %>
+  </p>
+
+  <p>
+    <strong>Endereço:</strong>
+    <%= @hotelinformation.address %>
+  </p>
+</div>
+<div class="ui centered segment">
+  <h2>Nossas acomodações:</h2>
+  <h4>Quarto de casal</h4>
+  <%= image_tag('quarto_casal.jpg', height: 640, width: 960)%>
+  <h4>Quarto de solteiro</h4>
+  <%= image_tag('quarto_solteiro_2_camas.jpg', height: 640, width: 960)%>
+  <h4>Sala de Reuniões</h4>
+  <%= image_tag('sala_de_reunioes.jpg', height: 640, width: 960)%>
+  <h4>Sala de videoconferência</h4>
+  <%= image_tag('videoconf_room.jpg', height: 640, width: 960)%>
+  <h4>Salão de eventos</h4>
+  <%= image_tag('salao_de_festas.jpg', height: 640, width: 960)%>
+</div>
