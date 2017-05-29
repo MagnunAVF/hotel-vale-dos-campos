@@ -7,4 +7,7 @@ Rails.application.routes.draw do
   resources :users
 
   get "/home" => "hotelinformations#home"
+  get "/main_search" => "accommodations#main_search"
+  get "/search_rooms" => "accommodations#search_rooms"
+
 end

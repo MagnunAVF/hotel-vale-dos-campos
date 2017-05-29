@@ -1,0 +1,31 @@
+<div class="ui center aligned container">
+  <h1>Quartos vagos</h1>
+  <h4>Abaixo está a lista de quartos vagos para o período desejado.</h4>
+  <h4>Para maiores detalhes clique no link visualizar do quarto desejado</h4>
+
+  <div class="ui centered cards">
+    <% @rooms.each do |room| %>
+      <div class="card">
+        <div class="image">
+          <%= image_tag('logo.png') %>
+        </div>
+        <div class="content">
+          <div class="header">
+            Número do quarto: <%= room.number %>
+          </div>
+          <div class="meta">
+            Capacidade: <%= room.capacity %> pessoas
+          </div>
+          <div class="description">
+            <%= room.description %>
+          </div>
+        </div>
+        <div class="extra content">
+          <span class="centered">
+            <%= link_to "Visualizar", {:controller => "accommodations", :action => "show", :id => room.id }%>
+          </span>
+        </div>
+      </div>
+    <% end %>
+  </div>
+</div>

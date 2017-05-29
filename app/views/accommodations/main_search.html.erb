@@ -1,0 +1,20 @@
+<div class="ui center aligned container">
+  <h1>O que você procura?</h1>
+  <h4>Abaixo você pode checar se existem cômodos vagos no período desejado.</h4>
+  <div class="ui center aligned segment">
+    <h4>Buscar quarto vago: </h4>
+    <%= form_for :query, url: "/search_rooms", html: { method: :get} do |form| %>
+      <%= form.label :start_date, "Data Inicial" %>
+      <%= date_select :start_date, :start_date, order: [:day, :month, :year] %>
+      </br></br>
+      <%= form.label :end_date, "Data Final" %>
+      <%= date_select :end_date, :end_date, order: [:day, :month, :year] %>
+      <br/></br>
+      <%= form.submit "Buscar"  %>
+    <% end  %>
+  </div>
+  <div class="ui center aligned segment">
+  </div>
+  <div class="ui center aligned segment">
+  </div>
+</div>
