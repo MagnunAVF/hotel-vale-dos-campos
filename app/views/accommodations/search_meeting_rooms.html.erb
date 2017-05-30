@@ -1,0 +1,31 @@
+<div class="ui center aligned container">
+  <h1>Salas de Reuniões Vagas</h1>
+  <h4>Abaixo está a lista de slas de reuniões vagas para o período desejado.</h4>
+  <h4>Para maiores detalhes clique no link visualizar da sala desejado</h4>
+
+  <div class="ui centered cards">
+    <% @meeting_rooms.each do |meeting_room| %>
+      <div class="card">
+        <div class="image">
+          <%= image_tag('logo.png') %>
+        </div>
+        <div class="content">
+          <div class="header">
+            Número da sala: <%= meeting_room.number %>
+          </div>
+          <div class="meta">
+            Capacidade: <%= meeting_room.capacity %> pessoas
+          </div>
+          <div class="description">
+            <%= meeting_room.description %>
+          </div>
+        </div>
+        <div class="extra content">
+          <span class="centered">
+            <%= link_to "Visualizar", {:controller => "accommodations", :action => "show", :id => meeting_room.id }%>
+          </span>
+        </div>
+      </div>
+    <% end %>
+  </div>
+</div>

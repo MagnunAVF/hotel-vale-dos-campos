@@ -35,6 +35,21 @@ class AccommodationsController < ApplicationController
     @event_halls = EventHall.all - occupied_eventhalls
   end
 
+  def search_meeting_rooms
+    occupied_rooms = []
+    start_date = params[:start_date]
+    start_time = params[:start_time]
+    searched_start_date = Date.new(start_date["start_date(1i)"].to_i, start_date["start_date(2i)"].to_i, start_date["start_date(3i)"].to_i)
+    searched_start_timedate = DateTime.new(start_time["start_time(1i)"].to_i, start_time["start_time(2i)"].to_i, start_time["start_time(3i)"].to_i,start_time["start_time(4i)"].to_i, start_time["start_time(5i)"].to_i, start_time["start_time(6i)"].to_i)
+    MeetingRoomBooking.all.each do |booking|
+      if searched_start_date.strftime("%Y-%m-%d")==booking.start_date.strftime("%Y-%m-%d") &&
+          ((searched_start_timedate.strftime("%H:%M:%S")..(searched_start_timedate + 6.hours).strftime("%H:%M:%S")).overlaps?(booking.start_time.strftime("%H:%M:%S")..(booking.start_time + 6.hours).strftime("%H:%M:%S") ))
+        occupied_rooms.append(MeetingRoom.find(booking.accommodation_id))
+      end
+    end
+    @meeting_rooms = MeetingRoom.all - occupied_rooms
+  end
+
   def show
     if @accommodation.type=="Room"
       @room = @accommodation
@@ -94,6 +109,6 @@ class AccommodationsController < ApplicationController
     end
 
     def accommodation_params
-      params.require(:accommodation).permit(:number, :capacity, :price, :type, :description, :occupied, :single_beds_number, :couple_beds_number, :videoconf, :tables_number, :period, :start_time => [], :end_time => [])
+      params.require(:accommodation).permit(:number, :capacity, :price, :type, :description, :occupied, :single_beds_number, :couple_beds_number, :videoconf, :tables_number, :period, :start_time => [], :start_date => [], :end_date => [])
     end
 end

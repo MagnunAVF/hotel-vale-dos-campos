@@ -23,12 +23,13 @@
       <i class="search icon"></i>
       Buscar Sala de reuniões vaga
     </h3>
-    <%= form_for :query, url: "/search_rooms", html: { method: :get} do |form| %>
-      <%= form.label :start_date, "Data Inicial" %>
+    <%= form_for :query, url: "/search_meeting_rooms", html: { method: :get} do |form| %>
+      <%= form.label :start_date, "Data Inicial: " %>
       <%= date_select :start_date, :start_date, order: [:day, :month, :year] %>
       </br></br>
-      <%= form.label :end_date, "Data Final" %>
-      <%= date_select :end_date, :end_date, order: [:day, :month, :year] %>
+      <%= form.label :start_time, "Hora inicial: " %>
+      <%= time_select("start_time", "start_time", include_seconds: true) %>
+      <%=  %>
       <br/></br>
       <%= form.submit "Buscar", class: "ui blue button"  %>
     <% end  %>
