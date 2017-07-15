@@ -1,4 +1,6 @@
 class AccommodationsController < ApplicationController
+  include AccommodationsHelper
+
   before_action :set_accommodation, only: [:show, :edit, :update, :destroy]
 
   def index

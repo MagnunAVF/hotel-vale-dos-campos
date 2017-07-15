@@ -1,17 +1,76 @@
-<p>
-  <strong>Description:</strong>
-  <%= @booking.description %>
-</p>
+<h2 class="ui horizontal divider header">
+  Visualizar Cômodo
+</h2>
+<br/><br/>
+<div class="ui container">
+  <div class="ui center aligned grid">
+    <p>
+      <strong>Tipo de Cômodo:</strong>
+      <% if @booking.type == "EventHallBooking" %>
+        Salão de Evento
+      <% else %>
+        <% if @booking.type == "MeetingRoomBooking" %>
+          Sala de Reunião
+        <% else %>
+          Quarto
+        <% end %>
+      <% end %>
+    </p>
 
-<p>
-  <strong>Start date:</strong>
-  <%= @booking.start_date %>
-</p>
+    <p>
+      <strong>Número do Cômodo:</strong>
+      <%= @booking.accommodation.number %>
+    </p>
 
-<p>
-  <strong>End date:</strong>
-  <%= @booking.end_date %>
-</p>
+    <p>
+      <strong>Funcionário:</strong>
+      <%= @booking.employee.name %>
+      <p>
+        <strong>Matrícula:</strong>
+        <%= @booking.employee.registrationID %>
+      </p>
+    </p>
 
-<%= link_to 'Edit', edit_booking_path(@booking) %> |
-<%= link_to 'Back', bookings_path %>
+    <p>
+      <strong>Cliente:</strong>
+      <%= @booking.client.name %>
+      <p>
+        <strong>Matrícula:</strong>
+        <%= @booking.client.cpf %>
+      </p>
+    </p>
+
+    <p>
+      <strong>Descrição:</strong>
+      <%= @booking.description %>
+    </p>
+
+    <p>
+      <strong>Data inicial:</strong>
+      <%= @booking.start_date %>
+    </p>
+
+    <% if @booking.type == "EventHallBooking" %>
+      <p>
+        <strong>Período:</strong>
+        <%= @booking.period %>
+      </p>
+    <% else %>
+      <% if @booking.type == "MeetingRoomBooking" %>
+        <p>
+          <strong>Hora inicial:</strong>
+          <%= @booking.start_time %>
+        </p>
+      <% else %>
+        <p>
+          <strong>Data final:</strong>
+          <%= @booking.end_date %>
+        </p>
+      <% end %>
+    <% end %>
+
+
+    <%= link_to 'Editar', edit_booking_path(@booking) %>
+    <%= link_to 'Voltar', bookings_path %>
+  </div>
+</div>

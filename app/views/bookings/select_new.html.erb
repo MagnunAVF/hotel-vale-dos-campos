@@ -1,0 +1,17 @@
+<h1 class="ui horizontal divider header">
+  Qual tipo de reserva deseja fazer ?
+</h1>
+<br/><br/>
+<div class="ui container">
+  <div class="ui center aligned grid">
+    <% if current_user.type == "Employee" %>
+      <%= link_to "Reservar um Quarto", new_room_booking_path(employee_id: current_user.id) %></br>
+      <%= link_to "Reservar uma Sala de Reunião ", new_meeting_room_booking_path(employee_id: current_user.id) %></br>
+      <%= link_to "Reservar um Salão de Evento", new_event_hall_booking_path(employee_id: current_user.id) %></br>
+    <% else %>
+      <%= link_to "Reservar um Quarto", new_room_booking_path() %></br>
+      <%= link_to "Reservar uma Sala de Reunião ", new_meeting_room_booking_path() %></br>
+      <%= link_to "Reservar um Salão de Evento", new_event_hall_booking_path() %></br>
+    <% end %>
+  </div>
+</div>

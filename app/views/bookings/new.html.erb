@@ -1,5 +1,11 @@
-<h1>New Booking</h1>
-
-<%= render 'form', booking: @booking %>
-
-<%= link_to 'Back', bookings_path %>
+<h1 class="ui horizontal divider header">
+  Nova Reserva
+</h1>
+<br/><br/>
+<div class="ui container">
+  <div class="ui center aligned grid">
+    <%= render 'form', booking: @booking %>
+    <%= link_to 'Voltar', bookings_path %>
+    </br></br>
+  </div>
+</div>

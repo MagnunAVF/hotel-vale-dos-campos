@@ -1,4 +1,7 @@
 class BookingsController < ApplicationController
+  include AccommodationsHelper
+
+  before_action :authenticate_user!
   before_action :set_booking, only: [:show, :edit, :update, :destroy]
 
   def index
@@ -10,6 +13,10 @@ class BookingsController < ApplicationController
 
   def new
     @booking = Booking.new
+    @booking.type = params[:type]
+  end
+
+  def select_new
   end
 
   def edit
@@ -17,10 +24,35 @@ class BookingsController < ApplicationController
 
   def create
     @booking = Booking.new(booking_params)
-    if @booking.save
-      redirect_to @booking, notice: 'Reserva criada com sucesso.'
+    @booking.accommodation = Accommodation.find_by_number(params[:accommodation_number])
+
+    if current_user.type == "Employee"
+      @booking.employee = current_user
+      @booking.client = Client.find_by_cpf(params[:client_cpf])
     else
+      @booking.client = current_user
+      @booking.employee = Employee.first
+    end
+
+    if @booking.accommodation.type == "Room"
+      accommodation_available = available_room?(@booking.accommodation, @booking.start_date, @booking.end_date)
+    else
+      if @booking.accommodation.type == "MeetingRoom"
+        accommodation_available = available_meeting_room?(@booking.accommodation, @booking.start_date, @booking.start_time)
+      else
+        accommodation_available = available_event_hall?(@booking.accommodation, @booking.start_date, @booking.period)
+      end
+    end
+
+    if not accommodation_available
+      flash.now[:notice] = 'Cômodo já ocupado ou reservado !'
       render :new
+    else
+      if @booking.save
+        redirect_to @booking, notice: 'Reserva criada com sucesso.'
+      else
+        render :new
+      end
     end
   end
 
@@ -43,6 +75,6 @@ class BookingsController < ApplicationController
     end
 
     def booking_params
-      params.require(:booking).permit(:description, :start_date, :end_date, :client_id, :employee_id, :accommodation_id)
+      params.require(:booking).permit(:description, :start_date, :end_date, :client_id, :employee_id, :accommodation_id, :type, :client_cpf, :accommodation_number)
     end
 end

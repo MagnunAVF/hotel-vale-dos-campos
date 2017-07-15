@@ -1,32 +1,90 @@
-<%= form_for(booking) do |f| %>
-  <% if booking.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(booking.errors.count, "error") %> prohibited this booking from being saved:</h2>
+<div class="ui form">
+  <%= form_for(booking) do |f| %>
+    <% if booking.errors.any? %>
+      <div id="error_explanation">
+        <h2><%= pluralize(booking.errors.count, "error") %> prohibited this booking from being saved:</h2>
 
-      <ul>
-      <% booking.errors.full_messages.each do |message| %>
-        <li><%= message %></li>
+        <ul>
+        <% booking.errors.full_messages.each do |message| %>
+          <li><%= message %></li>
+        <% end %>
+        </ul>
+      </div>
+    <% end %>
+
+    <% if current_user.type == "Employee" %>
+      <div class="field">
+        <h3>Funcionário:
+          <%= current_user.name %>
+        </h3>
+      </div>
+
+      <div class="field">
+        <h3>Matrícula:
+          <%= current_user.registrationID %>
+        </h3>
+      </div>
+
+      <%= hidden_field_tag "employee_id", @employee_id %>
+
+      <label for="client_cpf">CPF do cliente</label>
+      <%= text_field_tag :client_cpf %>
+
+      <label for="accommodation_number">Número do Cômodo</label>
+      <%= text_field_tag :accommodation_number %>
+    <% end %>
+
+    <% if current_user.type == "Client" %>
+        <div class="field">
+        <h3>Cliente:
+            <%= current_user.name %>
+          </h3>
+        </div>
+
+        <div class="field">
+          <h3>CPF:
+            <%= current_user.cpf %>
+          </h3>
+        </div>
+
+        <label for="accommodation_number">Número do Cômodo</label>
+        <%= text_field_tag :accommodation_number %>
+    <% end %>
+
+    <div class="field">
+      <%= f.label :description, "Descrição" %>
+      <%= f.text_field :description %>
+    </div>
+
+    <div class="field">
+      <%= f.label :start_date, "Data de início" %>
+      <%= f.date_select :start_date %>
+    </div>
+
+    <% if booking.type == "EventHallBooking" %>
+      </br></br>
+      <%= f.label :period, "Turno:" %></br>
+      <%= radio_button_tag(:period, 1) %>
+      <%= label_tag(:period, "Primeiro Turno") %></br>
+      <%= radio_button_tag(:period, 2) %>
+      <%= label_tag(:period, "Segundo Turno") %>
+    <% else %>
+      <% if booking.type == "MeetingRoomBooking" %>
+        </br></br>
+        <div class="three fields">
+          <%= f.label :start_time, "Hora inicial: " %>
+          <%= time_select("start_time", "start_time", include_seconds: true) %>
+        </div>
+      <% else %>
+        <div class="field">
+          <%= f.label :end_date, "Data de fim" %>
+          <%= f.date_select :end_date %>
+        </div>
       <% end %>
-      </ul>
+    <% end %>
+
+    <div class="actions">
+      <%= f.submit "Salvar", class: "ui blue button", client_cpf: :client_cpf, accommodation_number: :accommodation_number, employee_id: @employee_id %>
     </div>
   <% end %>
-
-  <div class="field">
-    <%= f.label :description %>
-    <%= f.text_field :description %>
-  </div>
-
-  <div class="field">
-    <%= f.label :start_date %>
-    <%= f.date_select :start_date %>
-  </div>
-
-  <div class="field">
-    <%= f.label :end_date %>
-    <%= f.date_select :end_date %>
-  </div>
-
-  <div class="actions">
-    <%= f.submit %>
-  </div>
-<% end %>
+</div>
