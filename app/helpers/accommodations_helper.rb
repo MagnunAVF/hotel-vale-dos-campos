@@ -1,5 +1,5 @@
 module AccommodationsHelper
-  def search_reserved_rooms(start_date, end_date)
+  def search_occupied_rooms(start_date, end_date)
     occupied_rooms = []
     RoomBooking.all.each do |booking|
       if (booking.start_date..booking.end_date).overlaps?(start_date..end_date)
