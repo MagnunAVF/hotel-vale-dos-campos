@@ -11,6 +11,10 @@ Rails.application.routes.draw do
   resources :event_hall_bookings, :controller => "bookings", :type => "EventHallBooking"
 
   resources :accommodations
+  resources :rooms, :controller => "accommodations", :type => "Room"
+  resources :meeting_rooms, :controller => "accommodations", :type => "MeetingRoom"
+  resources :event_halls, :controller => "accommodations", :type => "EventHall"
+
   resources :users
 
   get "/select_new_booking" => "bookings#select_new"
@@ -23,4 +27,7 @@ Rails.application.routes.draw do
   get "/search_rooms" => "accommodations#search_rooms"
   get "/search_meeting_rooms" => "accommodations#search_meeting_rooms"
   get "/search_event_halls" => "accommodations#search_event_halls"
+
+  get "/accommodations_situation" => "accommodations#accommodations_situation"
+  get "/accommodations_situation_detailed" => "accommodations#accommodations_situation_detailed"
 end

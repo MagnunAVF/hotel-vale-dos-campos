@@ -1,5 +1,6 @@
 class AccommodationsController < ApplicationController
   include AccommodationsHelper
+  include BookingsHelper
 
   before_action :set_accommodation, only: [:show, :edit, :update, :destroy]
 
@@ -11,32 +12,41 @@ class AccommodationsController < ApplicationController
   end
 
   def search_rooms
-    occupied_rooms = []
     start_date = params[:start_date]
     end_date = params[:end_date]
     searched_start_date = Date.new(start_date["start_date(1i)"].to_i, start_date["start_date(2i)"].to_i, start_date["start_date(3i)"].to_i)
     searched_end_date = Date.new(end_date["end_date(1i)"].to_i, end_date["end_date(2i)"].to_i, end_date["end_date(3i)"].to_i)
 
-    @rooms = Room.all - search_occupied_rooms(searched_start_date, searched_end_date)
+    @rooms = Room.all - search_reserved_rooms(searched_start_date, searched_end_date)
   end
 
   def search_event_halls
-    occupied_eventhalls = []
     searched_period = params[:period]
     start_date = params[:start_date]
     searched_start_date = Date.new(start_date["start_date(1i)"].to_i, start_date["start_date(2i)"].to_i, start_date["start_date(3i)"].to_i)
 
-    @event_halls = EventHall.all - search_occupied_event_halls(searched_start_date, searched_period)
+    @event_halls = EventHall.all - search_reserved_event_halls(searched_start_date, searched_period)
   end
 
   def search_meeting_rooms
-    occupied_rooms = []
     start_date = params[:start_date]
     start_time = params[:start_time]
     searched_start_date = Date.new(start_date["start_date(1i)"].to_i, start_date["start_date(2i)"].to_i, start_date["start_date(3i)"].to_i)
     searched_start_timedate = DateTime.new(start_time["start_time(1i)"].to_i, start_time["start_time(2i)"].to_i, start_time["start_time(3i)"].to_i,start_time["start_time(4i)"].to_i, start_time["start_time(5i)"].to_i, start_time["start_time(6i)"].to_i)
 
-    @meeting_rooms = MeetingRoom.all - search_occupied_meeting_rooms(searched_start_date, searched_start_timedate)
+    @meeting_rooms = MeetingRoom.all - search_reserved_meeting_rooms(searched_start_date, searched_start_timedate)
+  end
+
+  def accommodations_situation
+    @rooms = Room.where(occupied: true)
+    @meeting_rooms = MeetingRoom.where(occupied: true)
+    @event_halls = EventHall.where(occupied: true)
+  end
+
+  def accommodations_situation_detailed
+    @rooms = Room.where(occupied: true)
+    @meeting_rooms = MeetingRoom.where(occupied: true)
+    @event_halls = EventHall.where(occupied: true)
   end
 
   def show

@@ -1,0 +1,38 @@
+<h2 class="ui horizontal divider header">
+  Cômodos Ocupados
+</h2>
+<br/><br/>
+<div class="ui container">
+  <div class="ui center aligned grid">
+    <div class="ui center aligned segment">
+      <h3>Quartos Ocupados</h3></br>
+        <% @rooms.each do |room| %>
+          <div class="ui card">
+            <%= link_to room.number, room_path(room) %>
+          </div>
+        <% end %>
+    </div></br>
+
+    <div class="ui center aligned segment">
+      <h3>Salas de Reunião Ocupados</h3></br>
+      <% @meeting_rooms.each do |meeting_room| %>
+        <div class="ui card">
+          <%= link_to meeting_room.number, meeting_room_path(meeting_room) %>
+        </div>
+      <% end %>
+    </div></br>
+
+    <div class="ui center aligned segment">
+      <h3>Salões de Evento Ocupados</h3></br>
+      <% @event_halls.each do |event_hall| %>
+        <div class="ui card">
+          <%= link_to event_hall.number, event_hall_path(event_hall) %>
+        </div>
+      <% end %>
+    </div></br>
+  </div>
+  </br>
+  <div class="ui center aligned container">
+    <%= link_to 'Mais Informações', accommodations_situation_detailed_path %>
+  </div>
+</div>

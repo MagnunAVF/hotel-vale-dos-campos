@@ -11,7 +11,8 @@ Hotelinformation.create(
 
 print "Creating Accommodations ...\n"
 number_fixture = 1
-boolean_fixture = true
+# boolean_fixture = true
+boolean_fixture = false
 
 print "Creating Rooms \n"
 
@@ -26,7 +27,7 @@ for i in 1..50
     couple_beds_number: 1
   )
   number_fixture += 1
-  boolean_fixture = !boolean_fixture
+  # boolean_fixture = !boolean_fixture
 end
 
 for i in 1..30
@@ -40,7 +41,7 @@ for i in 1..30
     couple_beds_number: 0
   )
   number_fixture += 1
-  boolean_fixture = !boolean_fixture
+  # boolean_fixture = !boolean_fixture
 end
 
 for i in 1..30
@@ -54,7 +55,7 @@ for i in 1..30
     couple_beds_number: 1
   )
   number_fixture += 1
-  boolean_fixture = !boolean_fixture
+  # boolean_fixture = !boolean_fixture
 end
 
 for i in 1..12
@@ -68,7 +69,7 @@ for i in 1..12
     couple_beds_number: 2
   )
   number_fixture += 1
-  boolean_fixture = !boolean_fixture
+  # boolean_fixture = !boolean_fixture
 end
 
 print "Creating Meeting Rooms\n"
@@ -82,7 +83,7 @@ for i in 1..10
     videoconf: false
   )
   number_fixture += 1
-  boolean_fixture = !boolean_fixture
+  # boolean_fixture = !boolean_fixture
 end
 
 for i in 1..2
@@ -95,7 +96,7 @@ for i in 1..2
     videoconf: true
   )
   number_fixture += 1
-  boolean_fixture = !boolean_fixture
+  # boolean_fixture = !boolean_fixture
 end
 
 print "Creating Event Hall\n"
@@ -109,7 +110,7 @@ for i in 1..2
     tables_number: 20
   )
   number_fixture += 1
-  boolean_fixture = !boolean_fixture
+  # boolean_fixture = !boolean_fixture
 end
 
 print "Creating users ...\n"
@@ -156,16 +157,16 @@ RoomBooking.create(
   employee: employee01,
   accommodation: Room.all.first,
   description: "Reserva regular. Nenhum pedido especial.",
-  start_date: Date.parse('2017-06-12'),
-  end_date: Date.parse('2017-06-27'),
+  start_date: Date.current,
+  end_date: Date.current + 5,
 )
 MeetingRoomBooking.create(
   client: client01,
   employee: employee01,
   accommodation: MeetingRoom.find(134),
   description: "Preparar a sala 10 minutos antes",
-  start_date: Date.parse('2017-06-15'),
-  start_time: DateTime.parse("2012-06-15 09:00:00.000000")
+  start_date: Date.current,
+  start_time: DateTime.now.change({ hour: 9, min: 0, sec: 0 })
 )
 
 # bookings for Claudia Garcia
@@ -174,24 +175,35 @@ RoomBooking.create(
   employee: employee01,
   accommodation: Room.all.second,
   description: "As toalhas devem ser trocadas todo turno",
-  start_date: Date.parse('2017-06-02'),
-  end_date: Date.parse('2017-06-17'),
+  start_date: Date.current,
+  end_date: Date.current + 15,
 )
 MeetingRoomBooking.create(
   client: client02,
   employee: employee01,
   accommodation: MeetingRoom.find(130),
   description: "Preparar atas para a reunião",
-  start_date: Date.parse('2017-06-15'),
-  start_time: DateTime.parse("2012-06-15 14:00:00.000000")
+  start_date: Date.current,
+  start_time: DateTime.now.change({ hour: 15, min: 0, sec: 0 })
 )
 EventHallBooking.create(
   client: client02,
   employee: employee01,
   accommodation: EventHall.find(136),
   description: "Festa pós reunião",
-  start_date: Date.parse('2017-06-15'),
+  start_date: Date.current,
   period: 2
 )
+
+print "Alterations after bookings"
+accommodation = Room.all.first
+accommodation.occupied = true
+accommodation.save
+accommodation = Room.all.second
+accommodation.occupied = true
+accommodation.save
+accommodation = EventHall.find(136)
+accommodation.occupied = true
+accommodation.save
 
 print "Done! DB populated ! \n"
