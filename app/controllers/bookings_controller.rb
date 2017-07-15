@@ -6,6 +6,9 @@ class BookingsController < ApplicationController
 
   def index
     @bookings = Booking.all
+    @rooms_bookings = RoomBooking.all.order('created_at DESC')
+    @meeting_rooms_bookings = MeetingRoomBooking.all.order('created_at DESC')
+    @event_halls_bookings = EventHallBooking.all.order('created_at DESC')
   end
 
   def show

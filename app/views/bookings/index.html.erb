@@ -6,30 +6,13 @@
 <br/><br/>
 <div class="ui container">
   <div class="ui center aligned grid">
-    <table class="ui table">
-      <thead>
-        <tr>
-          <th>Description</th>
-          <th>Start date</th>
-          <th colspan="3"></th>
-        </tr>
-      </thead>
 
-      <tbody>
-        <% @bookings.each do |booking| %>
-          <tr>
-            <td><%= booking.description %></td>
-            <td><%= booking.start_date %></td>
-            <td><%= link_to 'Visualizar', booking %></td>
-            <td><%= link_to 'Editar', edit_booking_path(booking) %></td>
-            <td><%= link_to 'Deletar', booking, method: :delete, data: { confirm: 'Você tem certeza?' } %></td>
-          </tr>
-        <% end %>
-      </tbody>
-    </table>
+    <%= render 'rooms_bookings' %>
 
-    <br>
+    <%= render 'meeting_rooms_bookings' %>
 
-    <%= link_to 'New Booking', new_booking_path %>
+    <%= render 'event_halls_bookings' %>
+
+    <%= link_to 'Nova Reserva', select_new_booking_path %>
   </div>
 </div>

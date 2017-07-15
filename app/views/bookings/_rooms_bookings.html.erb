@@ -1,0 +1,43 @@
+<h3 class="ui horizontal divider header">
+  Reservas de Quartos
+</h3>
+<br/><br/>
+<div class="ui container">
+  </br>
+  <div class="ui center aligned grid">
+    <% if @rooms_bookings.nil? %>
+      <h4>Não existem reservas !</h4>
+    <% else %>
+      <table class="ui table">
+        <thead>
+          <tr>
+            <th>Data da Reserva</th>
+            <th>Número do Cômodo</th>
+            <th>Funcionário</th>
+            <th>Cliente</th>
+            <th>Data de Início</th>
+            <th>Data de Fim</th>
+            <th colspan="3"></th>
+          </tr>
+        </thead>
+
+        <tbody>
+          <% @rooms_bookings.each do |booking| %>
+            <tr>
+              <td><%= booking.created_at %></td>
+              <td><%= booking.accommodation.number %></td>
+              <td><%= booking.employee.registrationID %></td>
+              <td><%= booking.client.cpf %></td>
+              <td><%= booking.start_date %></td>
+              <td><%= booking.end_date %></td>
+              <td><%= link_to 'Visualizar', booking %></td>
+              <td><%= link_to 'Editar', edit_booking_path(booking) %></td>
+              <td><%= link_to 'Deletar', booking, method: :delete, data: { confirm: 'Você tem certeza?' } %></td>
+            </tr>
+          <% end %>
+        </tbody>
+      </table>
+    <% end %>
+    <br>
+  </div>
+</div>
