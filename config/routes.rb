@@ -16,6 +16,8 @@ Rails.application.routes.draw do
   resources :event_halls, :controller => "accommodations", :type => "EventHall"
 
   resources :users
+  resources :clients, :controller => "users", :type => "Client"
+  resources :employees, :controller => "users", :type => "Employee"
 
   get "/select_new_booking" => "bookings#select_new"
 
