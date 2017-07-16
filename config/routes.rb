@@ -36,4 +36,7 @@ Rails.application.routes.draw do
 
   get "/search_client" => "users#search_client"
   get "/search_client_results" => "users#search_client_results"
+
+  get "/checkin" => "bookings#checkin"
+  get "/checkout" => "bookings#checkout"
 end

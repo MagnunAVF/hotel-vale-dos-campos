@@ -11,6 +11,20 @@ class BookingsController < ApplicationController
     @event_halls_bookings = EventHallBooking.all.order(created_at: :desc)
   end
 
+  def checkin
+    @booking = Booking.find(params[:booking_id])
+    @booking.active = true
+    @booking.save
+    redirect_to bookings_path
+  end
+
+  def checkout
+    @booking = Booking.find(params[:booking_id])
+    @booking.active = false
+    @booking.save
+    redirect_to bookings_path
+  end
+
   def show
   end
 
@@ -85,6 +99,6 @@ class BookingsController < ApplicationController
     end
 
     def booking_params
-      params.require(:booking).permit(:description, :start_date, :end_date, :client_id, :employee_id, :accommodation_id, :type, :client_cpf, :accommodation_number)
+      params.require(:booking).permit(:description, :start_date, :end_date, :client_id, :employee_id, :accommodation_id, :type, :client_cpf, :accommodation_number, :booking_id)
     end
 end

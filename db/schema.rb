@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170528190335) do
+ActiveRecord::Schema.define(version: 20170716202529) do
 
   create_table "accommodations", force: :cascade do |t|
     t.integer  "number"
@@ -39,6 +39,7 @@ ActiveRecord::Schema.define(version: 20170528190335) do
     t.string   "type"
     t.datetime "start_time"
     t.integer  "period"
+    t.boolean  "active"
     t.index ["accommodation_id"], name: "index_bookings_on_accommodation_id"
     t.index ["client_id"], name: "index_bookings_on_client_id"
     t.index ["employee_id"], name: "index_bookings_on_employee_id"
