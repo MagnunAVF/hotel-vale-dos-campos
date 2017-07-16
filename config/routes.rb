@@ -30,4 +30,7 @@ Rails.application.routes.draw do
 
   get "/accommodations_situation" => "accommodations#accommodations_situation"
   get "/accommodations_situation_detailed" => "accommodations#accommodations_situation_detailed"
+
+  get "/search_client" => "users#search_client"
+  get "/search_client_results" => "users#search_client_results"
 end

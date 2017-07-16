@@ -1,0 +1,12 @@
+<div class="ui center aligned segment">
+  <h3 class="ui horizontal divider header">
+    <i class="search icon"></i>
+    Buscar Cliente
+  </h3>
+  <%= form_tag(search_client_results_path, :method => "get", id: "search-form") do %>
+      <%= text_field_tag :cpf, params[:cpf], placeholder: "CPF do Cliente" %>
+      <%= submit_tag "Buscar", :name => nil %>
+  <% end %>
+  </br>
+</div>
+</br>

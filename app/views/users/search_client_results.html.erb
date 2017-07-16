@@ -1,0 +1,21 @@
+<h2 class="ui horizontal divider header">
+  Clientes Encontrados
+</h2>
+<br/><br/>
+<div class="ui container">
+  <div class="ui center aligned grid">
+    <% if @clients.empty? %>
+      <h4>Não foram encontrados clientes</h4>
+    <% else %>
+      <div class="ui center aligned segment">
+          <% @clients.each do |client| %>
+            <div class="ui card">
+              <p><strong>Nome:</strong> <%= client.name %></p>
+              <p><strong>CPF:</strong> <%= client.cpf %></p>
+            </div>
+          <% end %>
+      </div>
+    <% end %>
+    </br>
+  </div>
+</div>

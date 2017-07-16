@@ -8,6 +8,13 @@ class UsersController < ApplicationController
   def show
   end
 
+  def search_client
+  end
+
+  def search_client_results
+    @clients = Client.where(cpf: params[:cpf], type: "Client").order(created_at: :asc)
+  end
+
   def new
     @user = User.new
   end
