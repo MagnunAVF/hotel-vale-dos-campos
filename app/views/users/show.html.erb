@@ -1,0 +1,29 @@
+<div class="ui centered container">
+  <div class="ui centered cards">
+      <div class="card">
+        <div class="content">
+          <div class="header">
+            Nome: <%= @user.name %>
+          </div>
+          <div class="meta">
+            <% if @user.type == "Employee" %>
+              Matrícula: <%= @user.registrationID %>
+            <% end %>
+          </div>
+          <div class="description">
+            CPF: <%= @user.cpf %>
+            </br>
+            Endereço: <%= @user.address %>
+            <br/>
+            Data de Nascimento: <%= @user.birthday %>
+            </br>
+            Email: <%= @user.email %>
+            <br/>
+            Telefone: <%= @user.fone %>
+            <br/>
+          </div>
+        </div>
+      </div>
+  </div>
+  <%= link_to 'Editar', edit_user_path(current_user) %>
+</div>

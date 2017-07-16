@@ -1,0 +1,117 @@
+<h1 class="ui horizontal divider header">
+  Minhas reservas
+</h1>
+<br/><br/>
+<div class="ui container">
+  <div class="ui center aligned grid">
+
+    <h3 class="ui horizontal divider header">
+      Reservas de Quartos
+    </h3>
+    <br/><br/>
+    <div class="ui center aligned grid">
+      <br/>
+      <% if @rooms_bookings.empty? %>
+        <h4>Não existem reservas !</h4>
+      <% else %>
+        <table class="ui table">
+          <thead>
+            <tr>
+              <th>Data da Reserva</th>
+              <th>Número do Cômodo</th>
+              <th>Data de Início</th>
+              <th>Data de Fim</th>
+            </tr>
+          </thead>
+
+          <tbody>
+            <% @rooms_bookings.each do |booking| %>
+              <tr>
+                <td><%= booking.created_at %></td>
+                <td><%= booking.accommodation.number %></td>
+                <td><%= booking.start_date %></td>
+                <td><%= booking.end_date %></td>
+              </tr>
+            <% end %>
+          </tbody>
+        </table>
+      <% end %>
+      <br>
+    </div>
+    </br>
+
+    <h3 class="ui horizontal divider header">
+      Reservas de Salas de Reunião
+    </h3>
+    <br/><br/>
+    <div class="ui center aligned grid">
+      <br/>
+      <% if @meeting_rooms_bookings.empty? %>
+        <h4>Não existem reservas !</h4>
+      <% else %>
+        <table class="ui table">
+          <thead>
+            <tr>
+              <th>Data da Reserva</th>
+              <th>Número do Cômodo</th>
+              <th>Data de Início</th>
+              <th>Hora Inicial</th>
+              <th>Hora Final</th>
+            </tr>
+          </thead>
+
+          <tbody>
+            <% @meeting_rooms_bookings.each do |booking| %>
+              <tr>
+                <td><%= booking.created_at %></td>
+                <td><%= booking.accommodation.number %></td>
+                <td><%= booking.start_date %></td>
+                <td><%= booking.start_time %></td>
+                <td><%= booking.start_time + 6.hours %></td>
+              </tr>
+            <% end %>
+          </tbody>
+        </table>
+      <% end %>
+      <br>
+    </div>
+    </br>
+
+    <h3 class="ui horizontal divider header">
+      Reservas de Quartos
+    </h3>
+    <br/><br/>
+    <div class="ui center aligned grid">
+      <br/>
+      <% if @event_halls_bookings.empty? %>
+        <h4>Não existem reservas !</h4>
+      <% else %>
+        <table class="ui table">
+          <thead>
+            <tr>
+              <th>Data da Reserva</th>
+              <th>Número do Cômodo</th>
+              <th>Data de Início</th>
+              <th>Período</th>
+            </tr>
+          </thead>
+
+          <tbody>
+            <% @event_halls_bookings.each do |booking| %>
+              <tr>
+                <td><%= booking.created_at %></td>
+                <td><%= booking.accommodation.number %></td>
+                <td><%= booking.start_date %></td>
+                <td><%= booking.period %></td>
+              </tr>
+            <% end %>
+          </tbody>
+        </table>
+      <% end %>
+      <br>
+    </div>
+    </br>
+
+
+  </div>
+</div>

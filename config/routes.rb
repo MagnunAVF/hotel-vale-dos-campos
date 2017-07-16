@@ -20,6 +20,7 @@ Rails.application.routes.draw do
   resources :employees, :controller => "users", :type => "Employee"
 
   get "/select_new_booking" => "bookings#select_new"
+  get "/user_bookings" => "bookings#user_bookings"
 
   get "/home" => "home#home"
   get "/user_home" => "home#user_home"

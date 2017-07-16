@@ -1,5 +1,10 @@
+<h2 class="ui horizontal divider header">
+  Bem-vindo, <%= current_user.name%>
+</h2>
+<br/><br/>
 <div class="ui container">
   <div class="ui center aligned grid">
-  
+    <%= link_to 'Meus Dados', current_user %>
+    <%= link_to 'Minhas Reservas', user_bookings_path %>
   </div>
 </div>

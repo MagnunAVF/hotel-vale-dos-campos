@@ -7,8 +7,8 @@ class BookingsController < ApplicationController
   def index
     @bookings = Booking.all
     @rooms_bookings = RoomBooking.all.order(created_at: :desc)
-    @meeting_rooms_bookings = MeetingRoomBooking.all.order('created_at DESC')
-    @event_halls_bookings = EventHallBooking.all.order('created_at DESC')
+    @meeting_rooms_bookings = MeetingRoomBooking.all.order(created_at: :desc)
+    @event_halls_bookings = EventHallBooking.all.order(created_at: :desc)
   end
 
   def show
@@ -23,6 +23,13 @@ class BookingsController < ApplicationController
   end
 
   def edit
+  end
+
+  def user_bookings
+    @bookings = Booking.where(client_id: current_user.id).order(created_at: :desc)
+    @rooms_bookings = RoomBooking.where(client_id: current_user.id).order(created_at: :desc)
+    @meeting_rooms_bookings = MeetingRoomBooking.where(client_id: current_user.id).order(created_at: :desc)
+    @event_halls_bookings = EventHallBooking.where(client_id: current_user.id).order(created_at: :desc)
   end
 
   def create
