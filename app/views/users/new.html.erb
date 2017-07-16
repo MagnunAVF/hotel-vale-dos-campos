@@ -1,5 +1,5 @@
 <h1 class="ui horizontal divider header">
-  Editando Novo
+  Criando Novo
   <% if @type == "Employee" %>
     Funcionário
   <% else %>
@@ -14,7 +14,6 @@
       <%= render 'form', user: @user %>
     </div>
 
-    <%= link_to 'Visualizar', @user %>
     <%= link_to 'Usuários', users_path %>
   </div>
 </div>

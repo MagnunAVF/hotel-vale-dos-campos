@@ -3,6 +3,8 @@ class UsersController < ApplicationController
 
   def index
     @users = User.all
+    @clients = Client.all
+    @employees = Employee.all
   end
 
   def show
@@ -17,9 +19,11 @@ class UsersController < ApplicationController
 
   def new
     @user = User.new
+    @type = params[:type]
   end
 
   def edit
+    @type = params[:type]
   end
 
   def create

@@ -1,0 +1,32 @@
+<table class="ui table">
+  <thead>
+    <tr>
+      <th>Nome</th>
+      <th>CPF</th>
+      <th>Endereço</th>
+      <th>Data de Nascimento</th>
+      <th>Email</th>
+      <th>Telefone</th>
+      <th>Operação</th>
+      <th></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @clients.each do |client| %>
+      <tr>
+        <td><%= client.name %></td>
+        <td><%= client.cpf %></td>
+        <td><%= client.address %></td>
+        <td><%= client.birthday %></td>
+        <td><%= client.email %></td>
+        <td><%= client.fone %></td>
+        <td><%= link_to "Editar", edit_client_path(client) %></td>
+        <td><%= link_to 'Deletar', client_path(client),
+              method: :delete,
+              data: { confirm: 'Você tem certeza??' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+<br>

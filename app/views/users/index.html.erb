@@ -1,33 +1,21 @@
-<p id="notice"><%= notice %></p>
+<h1 class="ui horizontal divider header">
+  Usuários
+</h1>
+<br/><br/>
+<div class="ui container">
+  <div class="ui center aligned grid">
 
-<h1>Users</h1>
+    <h3 class="ui horizontal divider header">
+      Clientes
+    </h3>
+    <%= render 'clients'%>
+    </br>
 
-<table>
-  <thead>
-    <tr>
-      <th>Name</th>
-      <th>Cpf</th>
-      <th>Address</th>
-      <th>Birthday</th>
-      <th>Email</th>
-      <th>Fone</th>
-    </tr>
-  </thead>
+    <h3 class="ui horizontal divider header">
+      Funcionários
+    </h3>
+    <%= render 'employees'%>
+    </br>
 
-  <tbody>
-    <% @users.each do |user| %>
-      <tr>
-        <td><%= user.name %></td>
-        <td><%= user.cpf %></td>
-        <td><%= user.address %></td>
-        <td><%= user.birthday %></td>
-        <td><%= user.email %></td>
-        <td><%= user.fone %></td>
-      </tr>
-    <% end %>
-  </tbody>
-</table>
-
-<br>
-
-<%= link_to 'New User', new_user_path %>
+  </div>
+</div>
