@@ -14,6 +14,7 @@ class BookingsController < ApplicationController
   def checkin
     @booking = Booking.find(params[:booking_id])
     @booking.active = true
+    @booking.accommodation.occupied = true
     @booking.save
     redirect_to bookings_path
   end
@@ -21,6 +22,7 @@ class BookingsController < ApplicationController
   def checkout
     @booking = Booking.find(params[:booking_id])
     @booking.active = false
+    @booking.accommodation.occupied = false
     @booking.save
     redirect_to bookings_path
   end

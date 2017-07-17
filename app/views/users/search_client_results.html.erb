@@ -10,7 +10,7 @@
       <div class="ui center aligned segment">
           <% @clients.each do |client| %>
             <div class="ui card">
-              <p><strong>Nome:</strong> <%= client.name %></p>
+              <p><strong>Nome:</strong> <%= link_to client.name, client_path(client) %></p>
               <p><strong>CPF:</strong> <%= client.cpf %></p>
             </div>
           <% end %>
