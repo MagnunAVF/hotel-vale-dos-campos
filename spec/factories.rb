@@ -69,36 +69,75 @@ FactoryGirl.define do
     end
   end
 
-  factory :room_booking, class: RoomBooking do
+  factory :future_room_booking, class: RoomBooking do
     before(:create) do |room_booking|
       room_booking.client = FactoryGirl.create :client
       room_booking.employee = FactoryGirl.create :employee
       room_booking.accommodation = FactoryGirl.create :room, :free
     end
     description                   "As toalhas devem ser trocadas todo turno"
-    start_date                    Date.current
-    end_date                      Date.current + 15
+    start_date                    Date.current + 5
+    end_date                      Date.current + 10
+    active                        true
   end
 
-  factory :meeting_room_booking, class: MeetingRoomBooking do
+  factory :present_room_booking, class: RoomBooking do
+    before(:create) do |room_booking|
+      room_booking.client = FactoryGirl.create :client
+      room_booking.employee = FactoryGirl.create :employee
+      room_booking.accommodation = FactoryGirl.create :room, :occupied
+    end
+    description                   "As toalhas devem ser trocadas todo turno"
+    start_date                    Date.current
+    end_date                      Date.current + 3
+    active                        true
+  end
+
+  factory :future_meeting_room_booking, class: MeetingRoomBooking do
     before(:create) do |meeting_room_booking|
       meeting_room_booking.client = FactoryGirl.create :client
       meeting_room_booking.employee = FactoryGirl.create :employee
       meeting_room_booking.accommodation = FactoryGirl.create :meeting_room, :free
     end
     description             "Preparar atas para a reunião"
-    start_date              Date.current
-    start_time              DateTime.now
+    start_date              Date.current + 5
+    start_time              DateTime.now + 5.days
+    active                        true
   end
 
-  factory :event_hall_booking, class: EventHallBooking do
+  factory :present_meeting_room_booking, class: MeetingRoomBooking do
+    before(:create) do |meeting_room_booking|
+      meeting_room_booking.client = FactoryGirl.create :client
+      meeting_room_booking.employee = FactoryGirl.create :employee
+      meeting_room_booking.accommodation = FactoryGirl.create :meeting_room, :occupied
+    end
+    description             "Preparar atas para a reunião"
+    start_date              Date.current
+    start_time              DateTime.now
+    active                        true
+  end
+
+  factory :future_event_hall_booking, class: EventHallBooking do
     before(:create) do |event_hall_booking|
       event_hall_booking.client = FactoryGirl.create :client
       event_hall_booking.employee = FactoryGirl.create :employee
       event_hall_booking.accommodation = FactoryGirl.create :event_hall, :free
     end
     description             "Preparar atas para a reunião"
+    start_date              Date.current + 5
+    period                  2
+    active                        true
+  end
+
+  factory :present_event_hall_booking, class: EventHallBooking do
+    before(:create) do |event_hall_booking|
+      event_hall_booking.client = FactoryGirl.create :client
+      event_hall_booking.employee = FactoryGirl.create :employee
+      event_hall_booking.accommodation = FactoryGirl.create :event_hall, :occupied
+    end
+    description             "Preparar atas para a reunião"
     start_date              Date.current
     period                  2
+    active                        true
   end
 end
