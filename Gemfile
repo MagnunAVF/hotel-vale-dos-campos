@@ -51,9 +51,6 @@ group :development, :test do
   gem 'byebug', platform: :mri
   # Factory Girl for Fixtures
   gem "factory_girl_rails", "~> 4.0"
-end
-
-group :test do
   gem 'database_cleaner'
   gem 'faker'
 end
