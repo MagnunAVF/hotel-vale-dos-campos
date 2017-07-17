@@ -36,7 +36,7 @@ gem 'jbuilder', '~> 2.5'
 gem 'devise'
 
 # Rspec and Guard for automated tests
-gem 'rspec'
+gem 'rspec-rails'
 gem 'guard'
 gem 'guard-rspec'
 
