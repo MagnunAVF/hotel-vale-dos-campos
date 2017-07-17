@@ -6,7 +6,9 @@
   <div class="ui center aligned grid">
     <%= render 'form', booking: @booking %>
     </br>
-    <%= link_to 'Voltar', bookings_path %>
+    <% if current_user.type == "Employee" %>
+      <%= link_to 'Voltar', bookings_path %>
+    <% end %>
     </br></br>
   </div>
 </div>

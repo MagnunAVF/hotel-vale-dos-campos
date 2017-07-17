@@ -25,7 +25,9 @@
         </h3>
       </div>
 
-      <%= hidden_field_tag "employee_id", @employee_id %>
+      <% if current_user == "Client" %>
+        <%= f.hidden_field "employee_id", @employee_id %>
+      <% end %>
 
       <label for="client_cpf">CPF do cliente</label>
       <%= text_field_tag :client_cpf %>
@@ -61,19 +63,19 @@
       <%= f.date_select :start_date %>
     </div>
 
-    <% if booking.type == "EventHallBooking" %>
+    <% if booking.type == "EventHallBooking" || @booking_type == "EventHallBooking" %>
       </br></br>
       <%= f.label :period, "Turno:" %></br>
-      <%= radio_button_tag(:period, 1) %>
-      <%= label_tag(:period, "Primeiro Turno") %></br>
-      <%= radio_button_tag(:period, 2) %>
-      <%= label_tag(:period, "Segundo Turno") %>
+      <%= f.radio_button :period, value: 1 %>
+      <%= f.label :period, "Primeiro Turno" %></br>
+      <%= f.radio_button :period, value: 2 %>
+      <%= f.label :period, "Segundo Turno" %>
     <% else %>
-      <% if booking.type == "MeetingRoomBooking" %>
+      <% if booking.type == "MeetingRoomBooking" || @booking_type == "MeetingRoomBooking" %>
         </br></br>
         <div class="three fields">
           <%= f.label :start_time, "Hora inicial: " %>
-          <%= time_select("start_time", "start_time", include_seconds: true) %>
+          <%= f.time_select :start_time, include_seconds: true %>
         </div>
       <% else %>
         <div class="field">
@@ -83,8 +85,9 @@
       <% end %>
     <% end %>
 
+    <%= f.hidden_field :type, value: @booking_type %>
     <div class="actions">
-      <%= f.submit "Salvar", class: "ui blue button", client_cpf: :client_cpf, accommodation_number: :accommodation_number, employee_id: @employee_id %>
+      <%= f.submit "Salvar", class: "ui blue button", client_cpf: :client_cpf, accommodation_number: :accommodation_number, employee_id: @employee_id  %>
     </div>
   <% end %>
 </div>

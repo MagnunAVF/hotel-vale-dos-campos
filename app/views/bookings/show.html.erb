@@ -1,5 +1,5 @@
 <h2 class="ui horizontal divider header">
-  Visualizar Cômodo
+  Visualizar Reserva
 </h2>
 <br/><br/>
 <div class="ui container">
@@ -69,8 +69,8 @@
       <% end %>
     <% end %>
 
-
-    <%= link_to 'Editar', edit_booking_path(@booking) %>
-    <%= link_to 'Voltar', bookings_path %>
+    <% if current_user.type == "Employee" %>
+      <%= link_to 'Editar', edit_booking_path(@booking) %>
+    <% end %>
   </div>
 </div>

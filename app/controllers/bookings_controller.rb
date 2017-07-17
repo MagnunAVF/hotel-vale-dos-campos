@@ -30,7 +30,7 @@ class BookingsController < ApplicationController
 
   def new
     @booking = Booking.new
-    @booking.type = params[:type]
+    @booking_type = params[:type]
   end
 
   def select_new
@@ -49,6 +49,7 @@ class BookingsController < ApplicationController
   def create
     @booking = Booking.new(booking_params)
     @booking.accommodation = Accommodation.find_by_number(params[:accommodation_number])
+    @booking.active = true
 
     if current_user.type == "Employee"
       @booking.employee = current_user
@@ -99,6 +100,6 @@ class BookingsController < ApplicationController
     end
 
     def booking_params
-      params.require(:booking).permit(:description, :start_date, :end_date, :client_id, :employee_id, :accommodation_id, :type, :client_cpf, :accommodation_number, :booking_id)
+      params.require(:booking).permit(:description, :start_date, :end_date, :start_time, :period, :client_id, :employee_id, :accommodation_id, :type, :client_cpf, :accommodation_number, :booking_id, :active)
     end
 end

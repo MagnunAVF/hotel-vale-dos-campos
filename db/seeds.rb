@@ -155,10 +155,11 @@ print "Creating Bookings ...\n"
 RoomBooking.create(
   client: client01,
   employee: employee01,
-  accommodation: Room.all.first,
+  accommodation: Room.first,
   description: "Reserva regular. Nenhum pedido especial.",
   start_date: Date.current,
   end_date: Date.current + 5,
+  active: true
 )
 MeetingRoomBooking.create(
   client: client01,
@@ -166,17 +167,19 @@ MeetingRoomBooking.create(
   accommodation: MeetingRoom.find(134),
   description: "Preparar a sala 10 minutos antes",
   start_date: Date.current,
-  start_time: DateTime.now.change({ hour: 9, min: 0, sec: 0 })
+  start_time: DateTime.now.change({ hour: 9, min: 0, sec: 0 }),
+  active: true
 )
 
 # bookings for Claudia Garcia
 RoomBooking.create(
   client: client02,
   employee: employee01,
-  accommodation: Room.all.second,
+  accommodation: Room.second,
   description: "As toalhas devem ser trocadas todo turno",
   start_date: Date.current,
   end_date: Date.current + 15,
+  active: true
 )
 MeetingRoomBooking.create(
   client: client02,
@@ -184,7 +187,8 @@ MeetingRoomBooking.create(
   accommodation: MeetingRoom.find(130),
   description: "Preparar atas para a reunião",
   start_date: Date.current,
-  start_time: DateTime.now.change({ hour: 15, min: 0, sec: 0 })
+  start_time: DateTime.now.change({ hour: 15, min: 0, sec: 0 }),
+  active: true
 )
 EventHallBooking.create(
   client: client02,
@@ -192,7 +196,8 @@ EventHallBooking.create(
   accommodation: EventHall.find(136),
   description: "Festa pós reunião",
   start_date: Date.current,
-  period: 2
+  period: 2,
+  active: true
 )
 
 print "Alterations after bookings"

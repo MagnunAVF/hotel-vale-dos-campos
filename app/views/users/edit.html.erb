@@ -15,6 +15,8 @@
     </div>
 
     <%= link_to 'Visualizar', @user %>
-    <%= link_to 'Usuários', users_path %>
+    <% if @type == "Employee" %>
+      <%= link_to 'Usuários', users_path %>
+    <% end %>
   </div>
 </div>

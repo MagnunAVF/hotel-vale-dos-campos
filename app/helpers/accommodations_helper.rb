@@ -31,7 +31,7 @@ module AccommodationsHelper
   end
 
   def available_room?(room, start_date, end_date)
-    if room.occupied || search_reserved_rooms(start_date, end_date).include?(room)
+    if (room.occupied && start_date == Date.current) || search_reserved_rooms(start_date, end_date).include?(room)
       return false
     else
       return true
@@ -39,7 +39,7 @@ module AccommodationsHelper
   end
 
   def available_meeting_room?(meeting_room, start_date, start_time)
-    if meeting_room.occupied || search_reserved_meeting_rooms(start_date, start_time).include?(meeting_room)
+    if (meeting_room.occupied && start_date == Date.current) || search_reserved_meeting_rooms(start_date, start_time).include?(meeting_room)
       return false
     else
       return true
@@ -47,7 +47,7 @@ module AccommodationsHelper
   end
 
   def available_event_hall?(event_hall, start_date, period)
-    if event_hall.occupied || search_reserved_event_halls(start_date, period).include?(event_hall)
+    if (event_hall.occupied  && start_date == Date.current) || search_reserved_event_halls(start_date, period).include?(event_hall)
       return false
     else
       return true
