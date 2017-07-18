@@ -28,8 +28,17 @@
       <% end %>
     </div>
 
-    <p class="notice"><%= notice %></p>
-    <p class="alert"><%= alert %></p>
+    <% if notice %>
+      <div class="ui inverted orange segment">
+        <p class="notice"><%= notice %></p>
+      </div>
+    <% end %>
+
+    <% if alert %>
+      <div class="ui inverted red segment">
+        <p class="alert"><%= alert %></p>
+      </div>
+    <% end %>
 
     <%= yield %>
 
