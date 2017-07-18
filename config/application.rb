@@ -11,5 +11,7 @@ module Hotel
     # Settings in config/environments/* take precedence over those specified here.
     # Application configuration should go into files in config/initializers
     # -- all .rb files in that directory are automatically loaded.
+    Time::DATE_FORMATS[:default] = "%d/%m/%Y %H:%M:%S"
+    Date::DATE_FORMATS[:default] = "%d/%m/%Y"
   end
 end
